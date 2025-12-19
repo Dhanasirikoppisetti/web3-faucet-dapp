@@ -6,7 +6,7 @@ A complete decentralized application (DApp) demonstrating end-to-end Web3 develo
 
 This project implements a token faucet system on the Sepolia testnet that distributes tokens with built-in security controls:
 
-- **24-hour cooldown period** between claims per address
+- **60 seconds cooldown period** between claims per address
 - **Lifetime claim limit** of 5 claims (500 tokens total) per address
 - **Admin-controlled pause functionality** for emergency stops
 - **On-chain access control** ensuring only the faucet contract can mint tokens
