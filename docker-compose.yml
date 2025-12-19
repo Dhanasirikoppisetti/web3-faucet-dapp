@@ -1,0 +1,16 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      VITE_RPC_URL: ${VITE_RPC_URL}
+      VITE_TOKEN_ADDRESS: 0xa95d894039BC0F0cbC630A47D497FF1cf274cAfF
+      VITE_FAUCET_ADDRESS: 0xF8EefC4eE8252b085370103c3CfC02e7C7B5FA3D
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health.json"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
