@@ -13,48 +13,6 @@ This project implements a token faucet system on the Sepolia testnet that distri
 - **Real-time state synchronization** between blockchain and UI
 - **Production-ready containerization** with Docker
 
-## 🏗️ Architecture
-
-┌─────────────────────────────────────────────────────────┐
-│ Frontend (React + Vite) │
-│ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ │
-│ │ Wallet │ │ Token │ │ Faucet │ │
-│ │ Connect │ │ Balance │ │ Claim UI │ │
-│ └──────┬───────┘ └──────┬───────┘ └──────┬───────┘ │
-│ │ │ │ │
-│ └─────────────────┴─────────────────┘ │
-│ │ │
-│ ethers.js (BrowserProvider) │
-└──────────────────────────┼──────────────────────────────┘
-│
-│ EIP-1193
-│
-┌────────────▼─────────────┐
-│ MetaMask Wallet │
-└────────────┬─────────────┘
-│
-│ JSON-RPC
-│
-┌────────────────▼───────────────────┐
-│ Sepolia Testnet Network │
-│ │
-│ ┌──────────────────────────────┐ │
-│ │ FaucetToken (ERC-20) │ │
-│ │ - Fixed Max Supply │ │
-│ │ - Faucet-only Minting │ │
-│ │ - Transfer/Approve │ │
-│ └──────────────────────────────┘ │
-│ │
-│ ┌──────────────────────────────┐ │
-│ │ TokenFaucet │ │
-│ │ - 100 tokens/claim │ │
-│ │ - 24h cooldown │ │
-│ │ - 5 claims max/address │ │
-│ │ - Admin pause control │ │
-│ └──────────────────────────────┘ │
-└────────────────────────────────────┘
-
-
 ## 🚀 Deployed Contracts (Sepolia Testnet)
 
 | Contract | Address | Etherscan Link |
@@ -80,18 +38,18 @@ Both contracts are deployed and verified on Sepolia Etherscan. You can view the 
 git clone <your-repo-url>
 cd submission
 
-text
+
 
 2. **Configure environment variables**
 cp .env.example .env
 
 Edit .env if needed (default values work for Sepolia deployment)
-text
+
 
 3. **Start the application**
 docker compose up --build
 
-text
+
 
 4. **Access the DApp**
 - Open browser: http://localhost:3000
@@ -106,30 +64,30 @@ cd frontend
 npm install
 cd ..
 
-text
+
 
 2. **Compile contracts**
 npx hardhat compile
 
-text
+
 
 3. **Copy artifacts to frontend**
 cp -r artifacts frontend/
 
-text
+
 
 4. **Configure frontend environment**
 cd frontend
 cp .env.example .env
 
 Update with contract addresses if needed
-text
+
 
 5. **Start development server**
 npm run dev
 
 Access at http://localhost:5173
-text
+
 
 ## ⚙️ Configuration
 
@@ -147,7 +105,7 @@ VITE_FAUCET_ADDRESS=0xF8EefC4eE8252b085370103c3CfC02e7C7B5FA3D
 Network Configuration
 VITE_CHAIN_ID=11155111
 
-text
+
 
 ### Contract Parameters
 
@@ -168,7 +126,7 @@ text
 
 npx hardhat test
 
-text
+
 
 **Test Coverage:**
 FaucetToken
@@ -187,7 +145,7 @@ TokenFaucet
 
 10 passing
 
-text
+
 
 ### Test Cooldown Periods
 
@@ -196,7 +154,6 @@ Tests use Hardhat's `evm_increaseTime` to manipulate blockchain time:
 await ethers.provider.send("evm_increaseTime", ); // +24 hours
 await ethers.provider.send("evm_mine"); // Mine new block
 
-text
 
 ## 🖥️ Evaluation Interface
 
@@ -228,7 +185,7 @@ await window.EVAL.getRemainingAllowance("0xYourAddress")
 await window.EVAL.requestTokens()
 // Returns: "0xTransactionHash" (string)
 
-text
+
 
 ### Example Usage
 
@@ -252,13 +209,11 @@ console.log("Claimed! TX:", txHash);
 const remaining = await window.EVAL.getRemainingAllowance(addr);
 console.log("Remaining allowance:", remaining);
 
-text
+
 
 ## 📹 Video Demonstration
 
 📹 **[Watch DApp Demo Video](https://drive.google.com/file/d/131NcxCx2QEx50xX9Ntouy3EECT7sr5ky/view?usp=sharing)**
-
-*Replace with your Loom, YouTube, or Google Drive link*
 
 The video demonstrates:
 - Wallet connection flow with MetaMask
